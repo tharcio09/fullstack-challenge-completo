@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+}
+:root {
+  --gap-size: 130px; /* por exemplo */
+}
+
+
+.dashboard-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px; 
+  margin-top: 20px;
+}
+
+
+.dashboard-table {
+  flex: 1;
+}
+
+.dashboard-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-table th {
+  font-weight: bold;
+}
+
+
+.dashboard-chart {
+  flex: 0 0 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#input-header {
+  margin: 0;
+  padding: 20px;
+  background-color: #007bff;
+  color: white;
+}
+:root {
+  --grafico-altura: 390px;
+}
