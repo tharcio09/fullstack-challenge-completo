@@ -8,7 +8,6 @@
 
     <div class="title-section">
       <h1>DATA</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
 
 
