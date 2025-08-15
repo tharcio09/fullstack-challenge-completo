@@ -12,7 +12,7 @@ Um sistema completo para gerenciar participantes e suas porcentagens de particip
 - ✅ **Validação de porcentagens** (máximo 100% total)
 - ✅ **Tratamento de erros** robusto
 - ✅ **Testes unitários** (Frontend e Backend)
-- ✅ **Docker e Docker Compose** para deploy
+
 - ✅ **API GraphQL** com validações
 
 ## 🛠️ **Tecnologias Utilizadas**
@@ -33,30 +33,11 @@ Um sistema completo para gerenciar participantes e suas porcentagens de particip
 - **MongoDB** - Banco de dados NoSQL
 - **Jest** - Framework de testes
 
-### **DevOps**
-- **Docker** - Containerização
-- **Docker Compose** - Orquestração de containers
-- **Nginx** - Proxy reverso
+
 
 ## 🚀 **Como Executar**
 
-### **Opção 1: Docker Compose (Recomendado)**
-
-```bash
-# Clone o repositório
-git clone <url-do-repositorio>
-cd fullstack-challenge-completo
-
-# Execute com Docker Compose
-docker-compose up -d
-
-# Acesse a aplicação
-# Frontend: http://localhost
-# Backend API: http://localhost:4000
-# GraphQL Playground: http://localhost:4000/graphql
-```
-
-### **Opção 2: Desenvolvimento Local**
+### **Desenvolvimento Local**
 
 #### **Backend**
 ```bash
@@ -74,8 +55,8 @@ npm run dev
 
 #### **MongoDB**
 ```bash
-# Instale o MongoDB localmente ou use Docker
-docker run -d -p 27017:27017 --name mongodb mongo:6.0
+# Instale o MongoDB localmente
+# Ou use MongoDB Atlas (cloud)
 ```
 
 ## 🧪 **Executando Testes**
@@ -116,10 +97,8 @@ fullstack-challenge-completo/
 │   │   └── main.js            # Entry point
 │   ├── package.json
 │   └── vite.config.js
-├── docker-compose.yml         # Orquestração Docker
-├── Dockerfile.backend         # Container Backend
-├── Dockerfile.frontend        # Container Frontend
-└── nginx.conf                 # Configuração Nginx
+
+
 ```
 
 ## 🔧 **API GraphQL**
@@ -227,20 +206,20 @@ mutation {
 - 📊 Cobertura de código
 - 🔍 Linting e formatação
 - 📚 Documentação detalhada
-- 🐳 Containerização completa
 
 ## 🌐 **Deploy**
 
-### **Docker Compose (Produção)**
+### **Deploy Manual**
 ```bash
-# Build e deploy
-docker-compose up -d --build
+# Backend
+cd challenge-backend
+npm install
+npm start
 
-# Logs
-docker-compose logs -f
-
-# Parar serviços
-docker-compose down
+# Frontend
+cd challenge-frontend
+npm install
+npm run build
 ```
 
 ### **Variáveis de Ambiente**
@@ -248,7 +227,7 @@ docker-compose down
 #### **Backend**
 ```env
 NODE_ENV=production
-MONGO_URI=mongodb://admin:password123@mongodb:27017/challenge?authSource=admin
+MONGO_URI=mongodb://localhost:27017/challenge
 PORT=4000
 ```
 
@@ -262,10 +241,8 @@ VITE_API_URL=http://localhost:4000/graphql
 ### **Erro de Conexão MongoDB**
 ```bash
 # Verificar se o MongoDB está rodando
-docker ps | grep mongodb
-
-# Verificar logs
-docker-compose logs mongodb
+# No Windows: Verificar serviços
+# No Linux/Mac: sudo systemctl status mongod
 ```
 
 ### **Erro de Build Frontend**
