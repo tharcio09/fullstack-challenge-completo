@@ -8,7 +8,7 @@ const app = express();
 // Configurações de segurança
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://seu-dominio.com'] 
+    ? ['https://fullstack-challenge-completo-7u1s.vercel.app/'] 
     : ['http://localhost:3000', 'http://localhost:5173'],
   credentials: true
 }));
