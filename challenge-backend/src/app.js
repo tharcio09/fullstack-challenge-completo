@@ -6,7 +6,10 @@ const schema = require('./schema');
 const app = express();
 
 // Configurações de segurança
-app.use(cors());
+app.use(cors({
+  origin: 'https://fullstack-challenge-completo-7u1s.vercel.app', // seu front-end
+  credentials: true // permite cookies
+}));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
