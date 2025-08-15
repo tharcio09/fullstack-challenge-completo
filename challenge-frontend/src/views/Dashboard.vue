@@ -59,8 +59,10 @@ export default {
     const { result, loading: queryLoading, error: queryError, refetch } = useQuery(GET_PARTICIPANTS);
     
     const { mutate: addParticipantMutation } = useMutation(ADD_PARTICIPANT, {
+ 
       update(cache, { data: { addParticipant } }) {
         try {
+          console.log('addParticipantMutation')
           const existingData = cache.readQuery({ query: GET_PARTICIPANTS });
           cache.writeQuery({
             query: GET_PARTICIPANTS,
