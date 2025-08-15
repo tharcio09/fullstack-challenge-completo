@@ -20,7 +20,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) 
 // Link HTTP
 const httpLink = createHttpLink({
   uri: process.env.NODE_ENV === 'production' 
-    ? 'https://seu-backend.com/graphql'
+    ? 'https://fullstack-challenge-completo.onrender.com'
     : 'http://localhost:4000/graphql',
   credentials: 'include',
 });
