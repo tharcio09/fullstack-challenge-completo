@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { graphql } = require('graphql');
 const schema = require('./schema');
 const Participant = require('./models/Participant');
@@ -5,13 +6,23 @@ const mongoose = require('mongoose');
 
 describe('GraphQL Schema', () => {
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGO_URI_TEST || 'mongodb://localhost:27017/test');
-  });
+    if (!process.env.MONGO_URI_TEST) {
+      throw new Error('MONGO_URI_TEST não está configurada');
+    }
+    await mongoose.connect(process.env.MONGO_URI_TEST, {
+      serverSelectionTimeoutMS: 15000,
+      socketTimeoutMS: 15000
+    });
+  }, 20000);
 
   afterAll(async () => {
-    await mongoose.connection.dropDatabase();
+    try {
+      await Participant.deleteMany({});
+    } catch (error) {
+      console.log('Erro ao limpar participantes:', error.message);
+    }
     await mongoose.connection.close();
-  });
+  }, 15000);
 
   beforeEach(async () => {
     await Participant.deleteMany({});

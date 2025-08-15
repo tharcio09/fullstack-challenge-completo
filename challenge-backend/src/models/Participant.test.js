@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Participant = require('./Participant');
 
@@ -10,15 +11,25 @@ const mockParticipant = {
 
 describe('Participant Model', () => {
   beforeAll(async () => {
-    // Conectar ao banco de teste
-    await mongoose.connect(process.env.MONGO_URI_TEST || 'mongodb://localhost:27017/test');
-  });
+    // Conectar ao banco de teste com timeout maior
+    if (!process.env.MONGO_URI_TEST) {
+      throw new Error('MONGO_URI_TEST não está configurada');
+    }
+    await mongoose.connect(process.env.MONGO_URI_TEST, {
+      serverSelectionTimeoutMS: 15000,
+      socketTimeoutMS: 15000
+    });
+  }, 20000);
 
   afterAll(async () => {
     // Limpar e desconectar
-    await mongoose.connection.dropDatabase();
+    try {
+      await Participant.deleteMany({});
+    } catch (error) {
+      console.log('Erro ao limpar participantes:', error.message);
+    }
     await mongoose.connection.close();
-  });
+  }, 15000);
 
   beforeEach(async () => {
     // Limpar a coleção antes de cada teste
