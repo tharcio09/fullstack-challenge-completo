@@ -1,17 +1,17 @@
 <template>
   <div class="dashboard">
-    <!-- Faixa azul com inputs -->
+
     <div id="input-header">
       <ParticipantForm @add="addParticipant" :loading="loading" />
     </div>
 
-    <!-- Título + frase -->
+
     <div class="title-section">
       <h1>DATA</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
 
-    <!-- Conteúdo principal -->
+
     <div v-if="error" class="error-message">
       <p>Erro ao carregar dados: {{ error }}</p>
       <button @click="retryLoad" class="retry-button">Tentar novamente</button>
@@ -129,7 +129,6 @@ export default {
       try {
         console.log('Tentando deletar participante com ID:', id);
         
-        // Verificar se o ID é válido
         if (!id) {
           throw new Error('ID do participante é inválido');
         }
@@ -139,9 +138,6 @@ export default {
         });
         
         console.log('Resultado da exclusão:', result);
-        
-        // Se chegou aqui, a exclusão foi bem-sucedida
-        // O cache já foi atualizado automaticamente
         
       } catch (e) {
         console.error("Erro ao deletar participante:", e);
